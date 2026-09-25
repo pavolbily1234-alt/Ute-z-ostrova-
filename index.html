@@ -1,0 +1,77 @@
+HTML<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Útěk z ostrova</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #168aad;
+  color: white;
+  text-align: center;
+}
+#game {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+button {
+  font-size: 20px;
+  padding: 14px 25px;
+  margin: 8px;
+  border: 0;
+  border-radius: 12px;
+  background: #ffd166;
+}
+#island {
+  font-size: 100px;
+  margin: 30px 0;
+}
+</style>
+</head>
+
+<body>
+<div id="game">
+  <h1>🏝️ Útěk z ostrova</h1>
+  <p id="text">Jsi uvězněný na ostrově. Najdi způsob, jak uniknout!</p>
+
+  <div id="island">🏝️</div>
+
+  <button onclick="search()">🔎 Hledat</button>
+  <button onclick="escapeIsland()">🚤 Utéct</button>
+
+  <h2>Body: <span id="score">0</span></h2>
+</div>
+
+<script>
+let score = 0;
+let foundBoat = false;
+
+function search() {
+  score += 10;
+  document.getElementById("score").textContent = score;
+
+  if (score >= 30) {
+    foundBoat = true;
+    document.getElementById("text").textContent =
+      "🎉 Našel jsi loď! Teď můžeš zkusit utéct.";
+  } else {
+    document.getElementById("text").textContent =
+      "🔎 Prohledáváš ostrov... našel jsi něco užitečného!";
+  }
+}
+
+function escapeIsland() {
+  if (foundBoat) {
+    document.getElementById("text").textContent =
+      "🚤 GRATULUJI! Úspěšně jsi utekl z ostrova! 🏆";
+  } else {
+    document.getElementById("text").textContent =
+      "❌ Nemáš loď! Nejdřív prohledej ostrov.";
+  }
+}
+</script>
+</body>
+</html>
